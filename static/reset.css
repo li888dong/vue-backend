@@ -1,0 +1,18 @@
+/* 样式重置 */
+  html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,form,img {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  ul,ol {
+    list-style: none
+  }
+  .fl {
+    float: left;
+  }
+  .fr {
+    float: right;
+  }
+  .tittle-lv1 {
+      font-size: 16px;
+  }

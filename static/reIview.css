@@ -1,0 +1,63 @@
+/* 主页步奏条样式重置 */
+.mainRight .ivu-steps .ivu-steps-title {
+    display: block;
+    padding-left: 16px;
+}
+.mainRight .ivu-steps .ivu-steps-head-inner {
+  margin-left: 36px;
+  margin-right: 36px;
+  margin-bottom: 36px;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  font-size: 30px;
+}
+.mainRight .ivu-steps .ivu-steps-tail {
+  top: 26px;
+}
+.ivu-steps .ivu-steps-head-inner>.ivu-steps-icon.ivu-icon{
+  font-size: 52px;
+}
+
+/*添加成员的表单错误提示样式重置*/
+.froms .ivu-input-wrapper {
+    width: 69%;
+  }
+  .froms .ivu-input-wrapper input{
+    height: 26px;
+  }
+  .froms .ivu-form-item-error-tip {
+      top: 20%;
+      left: 70%;
+  }
+  
+  /* .ivu-modal-close {
+    top: 2px;
+  }
+  .ivu-modal-close .ivu-icon-ios-close-empty{
+    color: #fff;
+  }
+  .ivu-modal-header {
+    padding: 8px 16px;
+    background-color: #2d8cf0;
+  }
+  .ivu-modal-header div{
+    color: #fff;
+  }
+  .ivu-modal-footer {
+    padding: 8px 16px;
+  } */
+
+
+  /*企业信息展示页面表单样式重置*/
+  .conRight .ivu-form .ivu-form-item-label {
+    font-size: 13px;
+    color: #787878;
+  }
+  .conRight .ivu-form-item-content {
+    font-size: 14px;
+  }
+
+  .addInvoiceMain .ivu-form-label-top .ivu-form-item-label {
+    padding: 0 0 2px 0;
+}
