@@ -38,7 +38,13 @@
         },
         methods: {
             toLoginOut() {
-                this.$router.push('/login')
+                this.$router.push('/login');
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('refresh_token');
+                this.$store.dispatch('setUserInfo',null);
+                this.$store.dispatch('setComInfo',null);
+                this.$store.dispatch('setComId',null);
+                this.$store.dispatch('setPage',1);
             },
             changePage(page){
                 this.$store.dispatch('setPage',page);

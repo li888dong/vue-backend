@@ -13,7 +13,7 @@
                 主体类型：<span>{{business_scope}} 企业</span>
             </div>
             <a href="javascript:void(0)" class="change" @click="toMyBusinessInfo()">查看企业详情</a>
-            <Button type="primary" class="downs">下载智电客户端</Button>
+            <Button type="primary" class="downs"><a :href="versionUrl" style="color: #ffffff!important;">下载智电客户端</a></Button>
             </Col>
             <Col span="19" class="mainRight">
             <h3>管理员，下午好！欢迎开始使用智电售电管理系统</h3>
@@ -51,8 +51,9 @@
             return {
                 name: '',
                 business_scope: '',
-                logoUrl:'',
-                members:0,
+                logoUrl: '',
+                members: 0,
+                versionUrl:''
             }
         },
         methods: {
@@ -69,7 +70,7 @@
                     this.name = data.com_name;
                     this.business_scope = data.business_scope;
                     this.logoUrl = data.logo;
-                    this.members =data.members;
+                    this.members = data.members;
                     this.$store.dispatch('setComInfo', res.data.data)
                 }, err => {
                     this.$api.errcallback(err)
@@ -77,7 +78,8 @@
             }
         },
         mounted() {
-            this.getComInfo()
+            this.getComInfo();
+            this.versionUrl = 'http://www.cx8o92.cn/download/windows/smartpower-win-1.0.6.exe'
         }
     }
 </script>

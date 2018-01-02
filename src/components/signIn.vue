@@ -34,10 +34,10 @@
                             <Input v-model="formRight.mobile" placeholder="请填写管理员手机号，此号将作为平台登录账号"></Input>
                         </FormItem>
                         <FormItem label="验证码" prop="code">
-                            <Input v-model="formRight.authCode" style="width: 200px" placeholder="请输入手机短信收到的6位验证码"
+                            <Input v-model="formRight.code" style="width: 200px" placeholder="请输入手机短信收到的6位验证码"
                                    :maxlength="6" v-on:on-blur="checkMsg"></Input>
                             <a v-if="countdown" style="margin-left:10px;">{{countdown}}</a>
-                            <a v-else style="margin-left:10px;" @click="getAuthCode">获取验证码</a>
+                            <a v-else style="margin-left:10px;" @click="getAuthCode">获取验证码</a><br>
                         </FormItem>
                         <FormItem label="设置密码" class="lines" prop="password">
                             <Input type="password" v-model="formRight.password" placeholder="请填写密码"></Input>
@@ -110,14 +110,18 @@
                     password: '',
                     password2: '',
                     email: '',
-                    authCode: ''
+                    code: ''
                 },
                 ruleValidate: {
-                    name: [{required: true, message: '姓名不能为空', trigger: 'blur'}],
-                    fullname: [{required: true, message: '公司名不能为空', trigger: 'blur'}],
+                    name: [{required: true, message: '公司名不能为空', trigger: 'blur'}],
+                    fullname: [{required: true, message: '姓名不能为空', trigger: 'blur'}],
                     mobile: [
                         {required: true, message: '手机号码不能为空', trigger: 'blur'},
                         {validator: mobileRule, message: '输入的手机号格式不对', trigger: 'blur'},
+                    ],
+                    code:[
+                        {required: true, message: '验证码不能为空', trigger: 'blur'},
+                        {type: 'string', min: 6,max:6, message: '输入6位验证码', trigger: 'blur'}
                     ],
                     tel: [{required: true, message: '座机号不能为空', trigger: 'blur'}],
                     mail: [
@@ -152,10 +156,12 @@
                 });
             },
             checkMsg() {
-                if (this.formRight.authCode.length === 6) {
-                    this.$http.get(this.$api.CONFIRM_MSG+'?mobile='+ this.formRight.mobile+'&code='+this.formRight.authCode).then(res => {
+                if (this.formRight.code.length === 6) {
+                    this.$http.get(this.$api.CONFIRM_MSG+'?mobile='+ this.formRight.mobile+'&code='+this.formRight.code).then(res => {
                         console.log('信息验证', res);
-                        this.msgCheck = true
+                        if(res.data.status){
+                            this.msgCheck = true
+                        }
                     }, err => {
                         this.$api.errcallback(err)
                     });
@@ -169,7 +175,7 @@
                 this.$Loading.start();
                 this.$http.post(this.$api.SIGNIN, {
                     name: this.formRight.name,
-                    code: this.formRight.authCode,
+                    code: this.formRight.code,
                     fullname: this.formRight.fullname,
                     mobile: this.formRight.mobile,
                     password: this.formRight.password,

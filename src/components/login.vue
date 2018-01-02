@@ -29,7 +29,7 @@
                             </CheckboxGroup>
                         </FormItem>
                         <FormItem>
-                            <Button type="primary" @click="login" style="width:100%;">登录</Button>
+                            <Button type="primary" @click="handleSubmit" style="width:100%;">登录</Button>
                         </FormItem>
                     </Form>
                 </div>
@@ -157,11 +157,11 @@
                 })
                 this.$http.post(this.$api.TOKEN, data).then(res => {
                     console.log('login', res);
-                    localStorage.setItem('access_token',res.access_token);
-                    localStorage.setItem('refresh_token',res.refresh_token);
+                    localStorage.setItem('access_token',res.data.access_token);
+                    localStorage.setItem('refresh_token',res.data.refresh_token);
                     localStorage.setItem('token_type',"Bearer");
-//                    this.$http.defaults.headers.common['Authorization'] ='Bearer '+ res.access_token;
-//                    this.login()
+                    this.$http.defaults.headers.common['Authorization'] ='Bearer '+ res.data.access_token;
+                    this.login()
                 }, err => {
                     this.$Message.error('网络错误');
                 });

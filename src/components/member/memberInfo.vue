@@ -147,7 +147,7 @@
                                     on: {
                                         click: () => {
                                             // this.remove(params.index)
-                                            this.$router.push({path:'memberChange',query:{curinfo:params}})
+                                            this.$router.push({path: 'memberChange', query: {curinfo: params}})
                                         }
                                     }
                                 }, '编辑')
@@ -156,18 +156,18 @@
                     }
                 ],
                 data2: [],
-                page:1,
-                limit:9,
-                total:1,
-                delModal:false,
-                delId:''
+                page: 1,
+                limit: 9,
+                total: 1,
+                delModal: false,
+                delId: ''
             }
         },
-        computed:{
-            com_name:function () {
+        computed: {
+            com_name: function () {
                 return this.$store.getters.comInfo.com_name
             },
-            members:function () {
+            members: function () {
                 return this.$store.getters.comInfo.members
             }
         },
@@ -175,15 +175,15 @@
             this.getMemberList();
         },
         methods: {
-            del(id){
+            del(id) {
                 this.delModal = true;
-                if (!isNaN(id)){
+                if (!isNaN(id)) {
                     this.delId = id;
                 }
             },
-            confirmDel(){
+            confirmDel() {
                 console.log(this.delId);
-                this.$http.delete(this.$api.DEL_USER+this.delId).then(res => {
+                this.$http.delete(this.$api.DEL_USER + this.delId).then(res => {
                     console.log('删除会员', res);
                     this.delId = '';
                     this.getMemberList()
@@ -193,11 +193,11 @@
                     this.getMemberList()
                 });
             },
-            getMemberList(){
-                this.$http.post(this.$api.USER_INDEX ,{
-                    com_id:this.$store.getters.userInfo.com_id,
-                    limit:this.limit,
-                    page:this.page
+            getMemberList() {
+                this.$http.post(this.$api.USER_INDEX, {
+                    com_id: this.$store.getters.userInfo.com_id,
+                    limit: this.limit,
+                    page: this.page
                 }).then(res => {
                     console.log('会员列表', res);
                     let data = res.data.data;
@@ -209,12 +209,12 @@
                     this.$api.errcallback(err)
                 });
             },
-            pageChange(page){
+            pageChange(page) {
                 this.page = page;
-                this.$http.post(this.$api.USER_INDEX ,{
-                    com_id:this.$store.getters.userInfo.com_id,
-                    limit:this.limit,
-                    page:this.page
+                this.$http.post(this.$api.USER_INDEX, {
+                    com_id: this.$store.getters.userInfo.com_id,
+                    limit: this.limit,
+                    page: this.page
                 }).then(res => {
                     console.log('会员列表', res);
                     let data = res.data.data;
@@ -230,13 +230,13 @@
                 this.$router.push('memberAdd')
             },
             toMenberDetail(curinfo) {
-                this.$router.push({path:'memberDetails',query:{curinfo:curinfo}})
+                this.$router.push({path: 'memberDetails', query: {curinfo: curinfo}})
             },
-            selectItem(val){
+            selectItem(val) {
                 console.log(val)
                 let ids = '';
-                val.map(i=>{
-                    ids+=i.id+','
+                val.map(i => {
+                    ids += i.id + ','
                 });
                 this.delId = ids
             }
