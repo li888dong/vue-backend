@@ -24,9 +24,9 @@
                     <Step title="使用智电客户端"></Step>
                 </Steps>
                 <p class="down">
-                    <a href="">立即下载 &gt;</a>
-                    <a href="">立即设置 &gt;</a>
-                    <a href="">立即使用 &gt;</a>
+                    <a :href="versionUrl">立即下载 &gt;</a>
+                    <a @click="changePage('4')">立即设置 &gt;</a>
+                    <a>立即使用 &gt;</a>
                 </p>
             </div>
             <p class="newsTip">您有2条消息</p>
@@ -75,6 +75,10 @@
                 }, err => {
                     this.$api.errcallback(err)
                 });
+            },
+            changePage(page) {
+                this.$store.dispatch('setPage', page);
+                this.$router.push('member');
             }
         },
         mounted() {

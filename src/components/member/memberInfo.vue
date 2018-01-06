@@ -106,8 +106,8 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.$router.push('/permission')
-                                            // this.show(params.index)
+                                            this.$store.dispatch('setPage', '3');
+                                            this.$router.push({path:'/permission',query:{curinfo: params.row}})
                                         }
                                     }
                                 }, '修改')
@@ -146,8 +146,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            // this.remove(params.index)
-                                            this.$router.push({path: 'memberChange', query: {curinfo: params}})
+                                            this.$router.push({path: 'memberChange', query: {curinfo: params.row}})
                                         }
                                     }
                                 }, '编辑')
@@ -183,7 +182,7 @@
             },
             confirmDel() {
                 console.log(this.delId);
-                this.$http.delete(this.$api.DEL_USER + this.delId).then(res => {
+                this.$http.post(this.$api.DEL_USER + this.delId).then(res => {
                     console.log('删除会员', res);
                     this.delId = '';
                     this.getMemberList()

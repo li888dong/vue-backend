@@ -17,6 +17,9 @@
             <FormItem label="企业成员">
                 <p>{{comInfo.members}}个成员</p>
             </FormItem>
+            <FormItem label="企业主体类型">
+                <p>{{comInfo.business_scope}}<a @click="scopeModal=true">修改</a></p>
+            </FormItem>
             <!--<FormItem label="企业部门" class="lines">-->
             <!--<p>一个部门 </p>-->
             <!--</FormItem>-->
@@ -40,7 +43,8 @@
             <FormItem label="发票抬头">
                 <p>
                     {{comInfo.fapiao_name}}
-                    <a @click="toAddInvoice()">修改</a> <i>为企业成员配置增值税发票抬头</i>
+                    <a @click="toAddInvoice()">修改</a>
+                    <!--<i>为企业成员配置增值税发票抬头</i>-->
                 </p>
             </FormItem>
             <FormItem label="企业联系电话">
@@ -108,6 +112,13 @@
             <Input v-model="comInfo.mobile" style="width: 452px"></Input>
         </Modal>
         <Modal
+            v-model="scopeModal"
+            title="企业主体类型"
+            @on-ok="comModify"
+            @on-cancel="comNamecancel">
+            <Input v-model="comInfo.business_scope" style="width: 452px"></Input>
+        </Modal>
+        <Modal
             v-model="businessNumModal"
             title="企业联系电话"
             @on-ok="comModify"
@@ -142,6 +153,7 @@
                 saleNumModal: false,
                 businessNumModal: false,
                 businessAdressModal: false,
+                scopeModal: false,
                 cropper1: {},
                 option1: {
                     showCropedImage: false,
@@ -153,15 +165,14 @@
                     input2: '',
                     input3: '',
                 },
-                formData:null
+                formData: null
             }
         },
         methods: {
             comModify() {
-                console.log(this.comInfo)
+                console.log(this.comInfo);
                 this.$http.post(this.$api.COM_UPDATE, {
                     id: this.comInfo.id,
-                    logo:this.comInfo.logo,
                     com_name: this.comInfo.com_name,
                     short_name: this.comInfo.short_name,
                     business_scope: this.comInfo.business_scope,
@@ -173,7 +184,7 @@
                     address: this.comInfo.address,
                 }).then(res => {
                     console.log('公司信息修改', res);
-                    this.getComInfo();
+
                 }, err => {
                     this.$api.errcallback(err)
                 });
@@ -182,7 +193,7 @@
                 this.$http.get(this.$api.COM_INFO + '\/' + this.$store.getters.userInfo.com_id).then(res => {
                     console.log('公司信息', res);
                     Object.assign(this.comInfo, res.data.data);
-                    this.option1.cropedImg = 'http://www.cx8o92.cn/'+this.comInfo.logo
+                    this.option1.cropedImg = 'http://www.cx8o92.cn/' + this.comInfo.logo;
                     this.$store.dispatch('setComInfo', res.data.data)
                 }, err => {
                     this.$api.errcallback(err)
@@ -213,13 +224,23 @@
                 this.option1.cropedImg = this.cropper1.getCroppedCanvas().toDataURL();
                 this.option1.showCropedImage = true;
                 console.log(this.option1.cropedImg);
-                this.$http.post(this.$api.UPLOAD_IMG ,this.formData).then(res => {
-                    console.log('上传图片', res);
-                    this.comInfo.logo = res.data.fileid;
-                    this.comModify();
-                }, err => {
-                    this.$api.errcallback(err)
-                });
+                this.$http.post(this.$api.UPLOAD_IMG, this.formData)
+                    .then(res => {
+                        console.log('上传图片', res);
+                        this.comInfo.logo = res.data.fileid;
+                        return this.$http.post(this.$api.COM_UPDATE, {
+                            id: this.comInfo.id,
+                            logo: this.comInfo.logo
+                        })
+                    }, err => {
+                        this.$api.errcallback(err)
+                    })
+                    .then(res => {
+                        console.log('公司信息修改', res);
+
+                    }, err => {
+                        this.$api.errcallback(err)
+                    });
             },
             toAddInvoice() {
                 this.$router.push('/addInvoice')

@@ -89,7 +89,7 @@
                 }).then(res => {
                     console.log('会员列表', res);
                     this.memberList = res.data.data.data;
-                    this.curMember = this.memberList[0].id
+                    this.curMember = this.$route.query.curinfo?this.$route.query.curinfo.id:this.memberList[0].id
                 }, err => {
                     this.$api.errcallback(err)
                 });

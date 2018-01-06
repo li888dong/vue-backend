@@ -21,7 +21,7 @@
                             <i>包括企业及其分支机构</i>
                         </FormItem> -->
                         <FormItem label="企业名称" prop="name">
-                            <Input v-model="formRight.name" placeholder="由1~30个中文、英文、数字及合法字符组成"></Input>
+                            <Input v-model="formRight.name" placeholder="由4~18个中文、英文、数字及下划线组成"></Input>
                         </FormItem>
 
                     </div>
@@ -40,20 +40,22 @@
                             <a v-else style="margin-left:10px;" @click="getAuthCode">获取验证码</a><br>
                         </FormItem>
                         <FormItem label="设置密码" class="lines" prop="password">
-                            <Input type="password" v-model="formRight.password" placeholder="请填写密码"></Input>
+                            <Input type="password" v-model="formRight.password" placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
                         </FormItem>
-                        <FormItem label="确认密码" class="lines" prop="password">
-                            <Input type="password" v-model="formRight.password2" placeholder="请填写密码"></Input>
+                        <FormItem label="确认密码" class="lines" prop="password2">
+                            <Input type="password" v-model="formRight.password2" placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
                         </FormItem>
                         <FormItem label="邮箱" class="lines" prop="email">
                             <Input v-model="formRight.email" placeholder="请填写管理员邮箱"></Input>
                         </FormItem>
                     </div>
                     <div style="text-align:center;color:#ccc;margin-top: 20px;">
-                        <span><Checkbox v-model="agree"></Checkbox>我同意并遵守<a>《智电客户端服务协议》</a></span>
-                        <Button type="primary" :disabled="!agree||!msgCheck" style="vertical-align: middle"
-                                @click="signin">注册
-                        </Button>
+                        <CheckboxGroup>
+                            <Checkbox v-model="agree" label="我同意并遵守《智电客户端服务协议》"></Checkbox>
+                            <Button type="primary" :disabled="!agree||!msgCheck" style="vertical-align: middle"
+                                    @click="signin">注册
+                            </Button>
+                        </CheckboxGroup>
                     </div>
                 </Form>
             </div>
@@ -61,47 +63,40 @@
         <div class="footer">
             &copy;易采
             <!--<div class="layout-content footer-content">-->
-                <!--<dl>-->
-                    <!--<dt>关于我们</dt>-->
-                    <!--<dd>公司介绍</dd>-->
-                    <!--<dd>客户案例</dd>-->
-                    <!--<dd>上午合作</dd>-->
-                    <!--<dd>联系我们</dd>-->
-                <!--</dl>-->
-                <!--<dl>-->
-                    <!--<dt>产品资料</dt>-->
-                    <!--<dd>产品介绍</dd>-->
-                    <!--<dd>基础实用手册</dd>-->
-                    <!--<dd>管理员手册</dd>-->
-                    <!--<dd>官方指南</dd>-->
-                <!--</dl>-->
-                <!--<dl>-->
-                    <!--<dt>服务规则</dt>-->
-                    <!--<dd>服务条款</dd>-->
-                    <!--<dd>技术支持</dd>-->
-                <!--</dl>-->
-                <!--<dl>-->
-                    <!--<dt>下载智电</dt>-->
-                    <!--<dd>下载客户端</dd>-->
-                    <!--<dd>企业注册智电</dd>-->
-                <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>关于我们</dt>-->
+            <!--<dd>公司介绍</dd>-->
+            <!--<dd>客户案例</dd>-->
+            <!--<dd>上午合作</dd>-->
+            <!--<dd>联系我们</dd>-->
+            <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>产品资料</dt>-->
+            <!--<dd>产品介绍</dd>-->
+            <!--<dd>基础实用手册</dd>-->
+            <!--<dd>管理员手册</dd>-->
+            <!--<dd>官方指南</dd>-->
+            <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>服务规则</dt>-->
+            <!--<dd>服务条款</dd>-->
+            <!--<dd>技术支持</dd>-->
+            <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>下载智电</dt>-->
+            <!--<dd>下载客户端</dd>-->
+            <!--<dd>企业注册智电</dd>-->
+            <!--</dl>-->
             <!--</div>-->
         </div>
     </div>
 </template>
 
 <script>
+    import ruleValidate from '../validator'
     export default {
         name: 'login',
         data() {
-            const mobileRule = (rule, val, callback) => {
-                console.log(val);
-                if (!/^1[3|4|5|8][0-9]\d{4,8}$/.test(val)) {
-                    return callback(new Error("输入的手机号格式不对"));
-                } else {
-                    callback();
-                }
-            };
             return {
                 formRight: {
                     name: '',
@@ -112,44 +107,28 @@
                     email: '',
                     code: ''
                 },
-                ruleValidate: {
-                    name: [{required: true, message: '公司名不能为空', trigger: 'blur'}],
-                    fullname: [{required: true, message: '姓名不能为空', trigger: 'blur'}],
-                    mobile: [
-                        {required: true, message: '手机号码不能为空', trigger: 'blur'},
-                        {validator: mobileRule, message: '输入的手机号格式不对', trigger: 'blur'},
-                    ],
-                    code:[
-                        {required: true, message: '验证码不能为空', trigger: 'blur'},
-                        {type: 'string', min: 6,max:6, message: '输入6位验证码', trigger: 'blur'}
-                    ],
-                    tel: [{required: true, message: '座机号不能为空', trigger: 'blur'}],
-                    mail: [
-                        {required: true, message: '邮箱不能为空', trigger: 'blur'},
-                        {required: true, type: 'email', message: '不符合邮箱格式', trigger: 'blur'}
-                    ],
-                    password: [
-                        {required: true, message: '邮箱不能为空', trigger: 'blur'},
-                        {type: 'string', min: 6, message: '最少6位最大12位', trigger: 'blur'}
-                    ]
-                },
                 countdown: 0,
                 msgCheck: false,
                 agree: false
             }
         },
+        computed:{
+            ruleValidate:function () {
+                return ruleValidate
+            }
+        },
         methods: {
             getAuthCode() {
+                if (this.formRight.mobile.length !== 11) {
+                    return false
+                }
                 this.countdown = 60;
                 let _this = this;
                 let timer = setInterval(function () {
                     _this.countdown--;
                     _this.countdown < 1 ? clearInterval(timer) : ''
                 }, 1000);
-                if (this.formRight.mobile.length!==11){
-                    return false
-                }
-                this.$http.get(this.$api.GET_MSG+'?mobile='+this.formRight.mobile).then(res => {
+                this.$http.get(this.$api.GET_MSG + '?mobile=' + this.formRight.mobile).then(res => {
                     console.log('短信', res);
                 }, err => {
                     this.$Message.error('网络错误');
@@ -157,9 +136,9 @@
             },
             checkMsg() {
                 if (this.formRight.code.length === 6) {
-                    this.$http.get(this.$api.CONFIRM_MSG+'?mobile='+ this.formRight.mobile+'&code='+this.formRight.code).then(res => {
+                    this.$http.get(this.$api.CONFIRM_MSG + '?mobile=' + this.formRight.mobile + '&code=' + this.formRight.code).then(res => {
                         console.log('信息验证', res);
-                        if(res.data.status){
+                        if (res.data.status) {
                             this.msgCheck = true
                         }
                     }, err => {
@@ -191,11 +170,11 @@
                             console.log('登陆', res1);
                             if (res1.data.status === '1') {
                                 this.$store.dispatch('setUserInfo', res1.data.userinfo);
-                                localStorage.setItem('auto', this.auto);
+                                sessionStorage.setItem('auto', this.auto);
                                 //TODO 密码加密
                                 if (this.auto === true) {
-                                    localStorage.setItem('mobile', this.formValidate.name);
-                                    localStorage.setItem('password', this.formValidate.possw)
+                                    sessionStorage.setItem('mobile', this.formValidate.name);
+                                    sessionStorage.setItem('password', this.formValidate.possw)
                                 }
                                 this.$Loading.finish();
                                 this.$router.push('/myBusiness');
@@ -323,7 +302,6 @@
         align-items: center;
 
     }
-
 
     .footer .footer-content {
         width: 30%;

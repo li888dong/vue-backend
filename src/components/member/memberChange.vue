@@ -14,14 +14,14 @@
                     <Row class="rows">
                         <Col span="12">
                         <!--<Avatar icon="person" size="large" class="photos" />-->
-                        <FormItem label="姓名 :" prop="name">
-                            <Input size="small" width="60" v-model="formValidate.name" placeholder="请填写名字"></Input>
+                        <FormItem label="姓名 :" prop="fullname">
+                            <Input size="small" width="60" v-model="formValidate.fullname" placeholder="请填写名字"></Input>
                         </FormItem>
                         <!--<FormItem label="账号 :" prop="uNum">-->
                         <!--<Input size="small" v-model="formValidate.uNum" placeholder="成员唯一标识，设定以后不支持修改"></Input>-->
                         <!--</FormItem>-->
-                        <FormItem label="性别 :" prop="gender">
-                            <RadioGroup v-model="formValidate.gender">
+                        <FormItem label="性别 :" prop="sex">
+                            <RadioGroup v-model="formValidate.sex">
                                 <Radio label="1">男</Radio>
                                 <Radio label="2">女</Radio>
                             </RadioGroup>
@@ -36,8 +36,8 @@
                         <FormItem label="座机 :" prop="tel">
                             <Input size="small" v-model="formValidate.tel" placeholder=""></Input>
                         </FormItem>
-                        <FormItem label="邮箱 :" prop="mail">
-                            <Input size="small" v-model="formValidate.mail" placeholder=""></Input>
+                        <FormItem label="邮箱 :" prop="email">
+                            <Input size="small" v-model="formValidate.email" placeholder=""></Input>
                         </FormItem>
                         </Col>
                     </Row>
@@ -63,7 +63,7 @@
             </div>
             <div class="mainNav">
                 <!-- @click="toAdd()" -->
-                <Button type="primary" size="small" @click="handleSubmit('formValidate');$router.go(-1)">保存</Button>
+                <Button type="primary" size="small" @click="handleSubmit;$router.go(-1)">保存</Button>
                 <Button type="ghost" size="small" @click="$router.go(-1)">取消</Button>
             </div>
         </div>
@@ -102,6 +102,7 @@
 </template>
 
 <script>
+    import ruleValidate from '../../validator'
     export default {
         name: 'memberChange',
         data() {
@@ -109,41 +110,30 @@
                 value1: '',
                 modal1: false,
                 formValidate: {
-                    name: '',
+                    fullname: '',
                     uNum: '',
-                    mail: '',
-                    gender: '1',
+                    email: '',
+                    sex: '',
                     department: '',
-                    mobile: '13838510803',
+                    mobile: '',
                     tel: '',
                     duty: ''
-                },
-                ruleValidate: {
-                    uNum: [
-                        {required: true, message: '账号不能为空', trigger: 'blur'}
-                    ],
-                    name: [{required: true, message: '姓名不能为空', trigger: 'blur'}],
-                    tel: [{required: true, message: '座机号不能为空', trigger: 'blur'}],
-                    mail: [
-                        {required: true, message: '邮箱不能为空', trigger: 'blur'},
-                        {required: true, type: 'email', message: '不符合邮箱格式', trigger: 'blur'}
-                    ],
-                    gender: [
-                        {required: true, message: '请选择性别', trigger: 'change'}
-                    ],
-                    department: [
-                        {required: true, message: '部门不能为空', trigger: 'blur'}
-                    ]
                 },
                 id: ''
             }
         },
+        computed:{
+            ruleValidate:function () {
+                return ruleValidate
+            }
+        },
         mounted() {
             this.id = this.$route.query.curinfo.id;
-            this.formValidate.name = this.$route.query.curinfo.fullname;
-            this.formValidate.mail = this.$route.query.curinfo.email;
+            this.formValidate.fullname = this.$route.query.curinfo.fullname;
+            this.formValidate.email = this.$route.query.curinfo.email;
             this.formValidate.mobile = this.$route.query.curinfo.mobile;
             this.formValidate.tel = this.$route.query.curinfo.tel;
+            this.formValidate.sex = this.$route.query.curinfo.sex;
             this.formValidate.duty = this.$route.query.curinfo.duty;
             this.formValidate.department = this.$route.query.curinfo.department;
             this.formValidate.gender = this.$route.query.curinfo.sex;
@@ -158,7 +148,7 @@
                     fullname: this.formValidate.name,
                     sex: this.formValidate.gender,
                     tel: this.formValidate.tel,
-                    email: this.formValidate.mail,
+                    email: this.formValidate.email,
                     department: this.formValidate.department,
                     duty: this.formValidate.duty,
                 };
@@ -166,9 +156,7 @@
                 this.$refs[name].validate((valid) => {
                     this.$http.post(this.$api.UPDATE_USER, reqData).then(res => {
                         console.log('修改会员', res);
-                        if (res.data.status === '1') {
-                            this.$Message.info(res.data.msg);
-                        }
+                        this.$Message.info(res.data.msg);
                     }, err => {
                         this.$Message.error('网络错误');
                     });

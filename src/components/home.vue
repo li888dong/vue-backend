@@ -41,13 +41,13 @@ export default {
     }
   },
   components : {
-    
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 /* 主页步奏条样式重置 */
 .homeRight .ivu-steps .ivu-steps-title {
     display: block;
@@ -99,7 +99,7 @@ ul,ol {
   background: #F9F9F9;
 }
 .layout-content {
-  width: 1170px;  
+  width: 1170px;
   margin: 0 auto;
 }
 .layout-top {
@@ -137,7 +137,7 @@ ul,ol {
 
 
 .mianBox {
-  
+
 }
 
 </style>

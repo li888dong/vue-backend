@@ -12,7 +12,7 @@
             <div class="froms">
                 <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
                     <Row class="rows">
-                        <Col span="12">
+                        <Col span="16">
                         <!-- <Avatar icon="person" size="large" class="photos" /> -->
                         <FormItem label="姓名 :" prop="fullname">
                             <Input size="small" width="60" v-model="formValidate.fullname" placeholder="请填写名字"></Input>
@@ -31,11 +31,11 @@
                         </FormItem>
 
                         <FormItem label="密码 :" prop="password">
-                            <Input size="small" type="password" v-model="formValidate.password" placeholder=""></Input>
+                            <Input size="small" type="password" v-model="formValidate.password" placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
                         </FormItem>
                         <FormItem label="确认密码 :" prop="password2">
                             <Input size="small" type="password" v-model="formValidate.password2"
-                                   placeholder=""></Input>
+                                   placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
                         </FormItem>
                         <FormItem label="手机 :" prop="mobile">
                             <Input size="small" v-model="formValidate.mobile" placeholder="成员通过验证该手机后可加入企业"></Input>
@@ -48,24 +48,24 @@
                         </Col>
                     </Row>
                     <Row class="rows">
-                        <Col span="12">
+                        <Col span="16">
 
                         <FormItem label="座机 :" prop="tel">
-                            <Input size="small" v-model="formValidate.tel" placeholder=""></Input>
+                            <Input size="small" v-model="formValidate.tel" placeholder="请输入成员的座机号码"></Input>
                         </FormItem>
                         <FormItem label="邮箱 :" prop="email">
-                            <Input size="small" v-model="formValidate.email" placeholder=""></Input>
+                            <Input size="small" v-model="formValidate.email" placeholder="请输入成员的邮箱"></Input>
                         </FormItem>
                         </Col>
                     </Row>
 
                     <Row class="rows">
-                        <Col span="12">
+                        <Col span="16">
                         <FormItem label="部门 :" prop="department">
-                            <Input size="small" v-model="formValidate.department" placeholder="请输入部门"></Input>
+                            <Input size="small" v-model="formValidate.department" placeholder="请输入成员的部门"></Input>
                         </FormItem>
                         <FormItem label="职务 :" prop="duty">
-                            <Input size="small" v-model="formValidate.duty" placeholder=""></Input>
+                            <Input size="small" v-model="formValidate.duty" placeholder="请输入成员的职务"></Input>
                         </FormItem>
                         </Col>
                     </Row>
@@ -87,7 +87,7 @@
             <!--:mask-closable=false-->
             <!--:styles="{top: '40px'}">-->
             <!--<Row class="modelBox">-->
-                <!--<Col span="12">-->
+                <!--<Col span="16">-->
                 <!--<Input v-model="value1" icon="search" size="small" placeholder="搜索部门"></Input>-->
                 <!--<div class="memberList">-->
                     <!--<ul>-->
@@ -99,7 +99,7 @@
                     <!--</ul>-->
                 <!--</div>-->
                 <!--</Col>-->
-                <!--<Col span="12">-->
+                <!--<Col span="16">-->
                 <!--<div class="xuanZe">-->
                     <!--<span>已选择的部门</span>-->
                     <!--<div class="menberType">-->
@@ -115,6 +115,7 @@
 </template>
 
 <script>
+    import ruleValidate from '../../validator'
     export default {
         name: 'memberAdd',
         data() {
@@ -131,28 +132,12 @@
                     email: '',
                     department: '',
                     duty: ''
-                },
-                ruleValidate: {
-                    uNum: [
-                        {required: true, message: '账号不能为空', trigger: 'blur'}
-                    ],
-                    email: [
-                        {required: true, message: '邮箱不能为空', trigger: 'blur'},
-                        {type: 'email', message: '不符合邮箱格式', trigger: 'blur'}
-                    ],
-                    sex: [
-                        {required: true, message: '请选择性别', trigger: 'change'}
-                    ],
-                    department: [
-                        {required: true, message: '请输入部门', trigger: 'blur'}
-                    ],
-                    password: [
-                        {required: true, message: '密码格式不正确', trigger: 'blur'}
-                    ],
-                    password2: [
-                        {required: true, message: '密码不一致', trigger: 'blur'}
-                    ]
                 }
+            }
+        },
+        computed:{
+            ruleValidate:function () {
+                return ruleValidate
             }
         },
         methods: {

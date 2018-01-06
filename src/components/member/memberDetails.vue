@@ -96,15 +96,6 @@
                 }, err => {
                     this.$Message.error('网络错误');
                 });
-            },
-            handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        this.$Message.success('Success!');
-                    } else {
-                        this.$Message.error('Fail!');
-                    }
-                })
             }
         },
 

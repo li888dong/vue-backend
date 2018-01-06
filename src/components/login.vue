@@ -11,20 +11,20 @@
             </div>
         </div>
         <Row class="mianBox">
-            <div class="mianBox-content" @keyup.enter="login">
+            <div class="mianBox-content" @keyup.enter="handleSubmit">
                 <div class="logoBox">
                     <img src="../../build/loginPic.png" alt="" class="loginPic">
                     <h2 style="margin-bottom:20px;color:#3596F8;">欢迎登录</h2>
-                    <Form ref="formValidate" :model="formValidate" :rules="ruleValidate">
-                        <FormItem prop="name">
-                            <Input v-model="formValidate.name" placeholder="请输入用户账号"></Input>
+                    <Form :model="formValidate" :rules="ruleValidate">
+                        <FormItem prop="mobile">
+                            <Input v-model="formValidate.mobile" placeholder="请输入已注册的手机号"></Input>
                         </FormItem>
-                        <FormItem prop="possw">
-                            <Input v-model="formValidate.possw" type="password" placeholder="请输入密码"></Input>
+                        <FormItem prop="password">
+                            <Input v-model="formValidate.password" type="password" placeholder="请输入密码"></Input>
                         </FormItem>
-                        <FormItem prop="interest">
-                            <CheckboxGroup v-model="formValidate.interest">
-                                <Checkbox label="记住密码" v-on:on-change="setAuto" v-model="auto"></Checkbox>
+                        <FormItem>
+                            <CheckboxGroup>
+                                <Checkbox label="记住密码" v-model="auto"></Checkbox>
                                 <span class="fr" style="color:#ccc;cursor: pointer;">忘记密码</span>
                             </CheckboxGroup>
                         </FormItem>
@@ -38,30 +38,30 @@
         <div class="footer">
             &copy;易采
             <!--<div class="layout-content footer-content">-->
-                <!--<dl>-->
-                    <!--<dt>关于我们</dt>-->
-                    <!--<dd>公司介绍</dd>-->
-                    <!--<dd>客户案例</dd>-->
-                    <!--<dd>上午合作</dd>-->
-                    <!--<dd>联系我们</dd>-->
-                <!--</dl>-->
-                <!--<dl>-->
-                    <!--<dt>产品资料</dt>-->
-                    <!--<dd>产品介绍</dd>-->
-                    <!--<dd>基础实用手册</dd>-->
-                    <!--<dd>管理员手册</dd>-->
-                    <!--<dd>官方指南</dd>-->
-                <!--</dl>-->
-                <!--<dl>-->
-                    <!--<dt>服务规则</dt>-->
-                    <!--<dd>服务条款</dd>-->
-                    <!--<dd>技术支持</dd>-->
-                <!--</dl>-->
-                <!--<dl>-->
-                    <!--<dt>下载智电</dt>-->
-                    <!--<dd>下载客户端</dd>-->
-                    <!--<dd>企业注册智电</dd>-->
-                <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>关于我们</dt>-->
+            <!--<dd>公司介绍</dd>-->
+            <!--<dd>客户案例</dd>-->
+            <!--<dd>上午合作</dd>-->
+            <!--<dd>联系我们</dd>-->
+            <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>产品资料</dt>-->
+            <!--<dd>产品介绍</dd>-->
+            <!--<dd>基础实用手册</dd>-->
+            <!--<dd>管理员手册</dd>-->
+            <!--<dd>官方指南</dd>-->
+            <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>服务规则</dt>-->
+            <!--<dd>服务条款</dd>-->
+            <!--<dd>技术支持</dd>-->
+            <!--</dl>-->
+            <!--<dl>-->
+            <!--<dt>下载智电</dt>-->
+            <!--<dd>下载客户端</dd>-->
+            <!--<dd>企业注册智电</dd>-->
+            <!--</dl>-->
             <!--</div>-->
         </div>
     </div>
@@ -69,102 +69,80 @@
 
 <script>
     import qs from 'qs'
-
+    import ruleValidate from '../validator'
     export default {
         name: 'signIn',
         data() {
-            const validateName = (rule, value, callback) => {
-                if (value === '') {
-                    callback(new Error('请输入用户名'));
-                } else {
-                    callback();
-                }
-            };
-            const validatePass = (rule, value, callback) => {
-                if (value === '') {
-                    callback(new Error('请输入密码'));
-                } else {
-                    callback();
-                }
-            };
             return {
                 formValidate: {
-                    name: '',
-                    possw: '',
-                    interest: []
-                },
-                ruleValidate: {
-                    name: [
-                        {validator: validateName, trigger: 'blur'}
-                    ],
-                    possw: [
-                        {validator: validatePass, trigger: 'blur'}
-                    ]
+                    mobile: '',
+                    possw: ''
                 },
                 auto: false
             }
         },
-        mounted() {
-            this.auto = localStorage.getItem('auto') === 'true';
-            if (localStorage.getItem('auto') === 'true') {
-                this.formValidate.name = localStorage.getItem('mobile');
-                this.formValidate.possw = localStorage.getItem('password');
+        computed:{
+            ruleValidate:function () {
+                return ruleValidate
             }
+        },
+        mounted() {
+            this.auto = sessionStorage.getItem('auto') === 'true';
+            if (sessionStorage.getItem('auto') === 'true') {
+                this.formValidate.mobile = sessionStorage.getItem('mobile');
+                this.formValidate.password = sessionStorage.getItem('password');
+            }
+
         },
         methods: {
             toSignIn() {
                 this.$router.push('signIn')
             },
-            setAuto(val) {
-                localStorage.setItem('auto', val)
-            },
-            login(){
-                this.$http.post(this.$api.LOGIN, {
-                    mobile: this.formValidate.name,
-                    password: this.formValidate.possw,
-                }).then(res => {
-                    console.log('登陆',res);
-                    if (res.data.status === '1') {
-                        let userinfo = res.data.userinfo;
-                        console.log(userinfo);
-                        this.$store.dispatch('setUserInfo', userinfo);
-                        this.$router.push('mains');
-                        localStorage.setItem('auto', this.auto);
-                        //TODO 密码加密
-                        if (this.auto === true) {
-                            localStorage.setItem('mobile', this.formValidate.name);
-                            localStorage.setItem('password', this.formValidate.possw)
-                        }
-                        this.$Loading.finish();
-                    } else {
-                        this.$Message.error('请输入正确的用户名和密码');
-                        this.$Loading.error();
-                    }
-                }, err => {
-                    this.$Message.error('网络错误');
-                });
-            },
             handleSubmit() {
-                console.log(this.$store.getters.access_token);
                 this.$Loading.start();
                 let data = qs.stringify({
                     'grant_type': 'password',
                     'client_id': '3',
                     'client_secret': 'Z2PIvGbdvcwAgvCoixzcV7uLLkBoZY0PFGKA8xK6',
-                    username: this.formValidate.name,
-                    password: this.formValidate.possw,
+                    username: this.formValidate.mobile,
+                    password: this.formValidate.password,
                     scope: ''
-                })
-                this.$http.post(this.$api.TOKEN, data).then(res => {
-                    console.log('login', res);
-                    localStorage.setItem('access_token',res.data.access_token);
-                    localStorage.setItem('refresh_token',res.data.refresh_token);
-                    localStorage.setItem('token_type',"Bearer");
-                    this.$http.defaults.headers.common['Authorization'] ='Bearer '+ res.data.access_token;
-                    this.login()
-                }, err => {
-                    this.$Message.error('网络错误');
                 });
+                this.$http.post(this.$api.TOKEN, data)
+                    .then(res => {
+                        console.log('login', res);
+                        sessionStorage.setItem('access_token', res.data.access_token);
+                        sessionStorage.setItem('refresh_token', res.data.refresh_token);
+                        sessionStorage.setItem('token_type', "Bearer");
+                        this.$http.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token;
+//                      请求到token后进行登录
+                        return this.$http.post(this.$api.LOGIN, {
+                            mobile: this.formValidate.mobile,
+                            password: this.formValidate.password,
+                        })
+                    }, err => {
+                        this.$Message.error('网络错误');
+                    })
+                    .then(res => {
+                        console.log('登陆', res);
+                        if (res.data.status === '1') {
+                            let userinfo = res.data.userinfo;
+                            this.$store.dispatch('setUserInfo', userinfo);
+                            this.$router.push('mains');
+                            sessionStorage.setItem('auto', this.auto);
+                            //TODO 密码加密
+                            if (this.auto === true) {
+                                sessionStorage.setItem('mobile', this.formValidate.mobile);
+                                sessionStorage.setItem('password', this.formValidate.password)
+                            }
+                            this.$Loading.finish();
+                        } else {
+                            this.$Message.error('请输入正确的用户名和密码');
+                            this.$Loading.error();
+                        }
+                    }, err => {
+                        this.$Message.error('网络错误');
+                    });
             }
         }
     }

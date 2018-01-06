@@ -24,12 +24,10 @@
     export default {
         name: 'mainTop',
         data() {
-            return {
-
-            }
+            return {}
         },
-        computed:{
-            curPage:function () {
+        computed: {
+            curPage: function () {
                 return this.$store.getters.curPage
             }
         },
@@ -39,20 +37,19 @@
         methods: {
             toLoginOut() {
                 this.$router.push('/login');
-                localStorage.removeItem('access_token');
-                localStorage.removeItem('refresh_token');
-                this.$store.dispatch('setUserInfo',null);
-                this.$store.dispatch('setComInfo',null);
-                this.$store.dispatch('setComId',null);
-                this.$store.dispatch('setPage',1);
+                sessionStorage.removeItem('access_token');
+                sessionStorage.removeItem('refresh_token');
+                this.$store.dispatch('setUserInfo', null);
+                this.$store.dispatch('setComInfo', null);
+                this.$store.dispatch('setPage', 1);
             },
-            changePage(page){
-                this.$store.dispatch('setPage',page);
-                if (page === '1'){
+            changePage(page) {
+                this.$store.dispatch('setPage', page);
+                if (page === '1') {
                     this.$router.push('mains')
-                } else if(page==='4'){
+                } else if (page === '4') {
                     this.$router.push('member')
-                }else if (page === '3'){
+                } else if (page === '3') {
                     this.$router.push('permission')
                 }
             }
