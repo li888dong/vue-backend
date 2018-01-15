@@ -40,10 +40,12 @@
                             <a v-else style="margin-left:10px;" @click="getAuthCode">获取验证码</a><br>
                         </FormItem>
                         <FormItem label="设置密码" class="lines" prop="password">
-                            <Input type="password" v-model="formRight.password" placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
+                            <Input type="password" v-model="formRight.password"
+                                   placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
                         </FormItem>
                         <FormItem label="确认密码" class="lines" prop="password2">
-                            <Input type="password" v-model="formRight.password2" placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
+                            <Input type="password" v-model="formRight.password2"
+                                   placeholder="请填写6-12位字母、数字或下划线组成的密码"></Input>
                         </FormItem>
                         <FormItem label="邮箱" class="lines" prop="email">
                             <Input v-model="formRight.email" placeholder="请填写管理员邮箱"></Input>
@@ -94,6 +96,7 @@
 
 <script>
     import ruleValidate from '../validator'
+
     export default {
         name: 'login',
         data() {
@@ -112,8 +115,8 @@
                 agree: false
             }
         },
-        computed:{
-            ruleValidate:function () {
+        computed: {
+            ruleValidate: function () {
                 return ruleValidate
             }
         },
@@ -138,8 +141,12 @@
                 if (this.formRight.code.length === 6) {
                     this.$http.get(this.$api.CONFIRM_MSG + '?mobile=' + this.formRight.mobile + '&code=' + this.formRight.code).then(res => {
                         console.log('信息验证', res);
-                        if (res.data.status) {
-                            this.msgCheck = true
+                        if (res.data.status === 1) {
+                            this.msgCheck = true;
+                            this.$Message.success('验证码正确');
+                        } else {
+                            this.msgCheck = false;
+                            this.$Message.error('验证码错误');
                         }
                     }, err => {
                         this.$api.errcallback(err)
@@ -160,59 +167,46 @@
                     password: this.formRight.password,
                     password2: this.formRight.password2,
                     email: this.formRight.email,
-                }).then(res => {
-                    console.log('注册成功', res);
-                    if (res.data.status === '1') {
-                        this.$http.post(this.$api.LOGIN, {
-                            mobile: this.formRight.mobile,
-                            password: this.formRight.password
-                        }).then(res1 => {
-                            console.log('登陆', res1);
-                            if (res1.data.status === '1') {
-                                this.$store.dispatch('setUserInfo', res1.data.userinfo);
-                                sessionStorage.setItem('auto', this.auto);
-                                //TODO 密码加密
-                                if (this.auto === true) {
-                                    sessionStorage.setItem('mobile', this.formValidate.name);
-                                    sessionStorage.setItem('password', this.formValidate.possw)
-                                }
-                                this.$Loading.finish();
-                                this.$router.push('/myBusiness');
-                            } else {
-                                this.$Message.error(res.msg);
-                                this.$Loading.error();
-                                this.$router.push('/login');
+                })
+                    .then(res => {
+                        if (res.data.status === '1') {
+                            this.$Message.success('注册成功');
+                            return this.$http.post(this.$api.LOGIN, {
+                                mobile: this.formRight.mobile,
+                                password: this.formRight.password
+                            })
+                        } else {
+                            this.$Message.error(res.data.msg);
+                        }
+
+                    }, err => {
+                        this.$Message.error('网络错误');
+                        this.$router.push('signIn')
+                    })
+                    .then(res1 => {
+                        console.log('登陆', res1);
+                        if (res1.data.status === '1') {
+                            this.$store.dispatch('setUserInfo', res1.data.userinfo);
+                            sessionStorage.setItem('auto', this.auto);
+                            //TODO 密码加密
+                            if (this.auto === true) {
+                                sessionStorage.setItem('mobile', this.formValidate.name);
+                                sessionStorage.setItem('password', this.formValidate.possw)
                             }
-                        }, err => {
-                            this.$Message.error('请尝试重新登陆');
+                            this.$Loading.finish();
+                            this.$router.push('/myBusiness');
+                        } else {
+                            this.$Message.error(res.msg);
+                            this.$Loading.error();
                             this.$router.push('/login');
-                        });
-
-                    } else {
-                        this.$Message.error(res.data.msg);
-                    }
-
-                }, err => {
-                    this.$Message.error('网络错误');
-                    this.$router.push('signIn')
-                });
+                        }
+                    }, err => {
+                        this.$Message.error('请尝试重新登陆');
+                        this.$router.push('/login');
+                    });
             },
             toLogin() {
                 this.$router.push('login')
-            },
-
-            getComInfo() {
-                this.$http.get(this.$api.COM_INFO + '\/' + this.$store.getters.userInfo.com_id).then(res => {
-                    console.log('公司信息', res);
-                    let data = res.data.data;
-                    this.name = data.com_name;
-                    this.business_scope = data.business_scope;
-                    this.logoUrl = data.logo;
-                    this.members = data.members;
-                    this.$store.dispatch('setComInfo', res.data.data)
-                }, err => {
-                    this.$api.errcallback(err)
-                });
             }
         }
     }

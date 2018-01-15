@@ -10,8 +10,9 @@
                 |
                 <Button size="small" @click="toMemberChange()">编辑</Button>
                 |
-                <Button type="ghost" size="small" @click="setDisable">禁用</Button>
-                <Button type="ghost" size="small">删除</Button>
+                <Button type="ghost" size="small" @click="setDisable('1')" v-if="curinfo.status === '0'">禁用</Button>
+                <Button type="ghost" size="small" @click="setDisable('0')" v-if="curinfo.status === '1'">启用</Button>
+                <Button type="ghost" size="small" @click="del">删除</Button>
             </div>
             <div class="froms">
                 <Form ref="formValidate" :label-width="80">
@@ -54,6 +55,11 @@
                 </Form>
             </div>
         </div>
+        <Modal
+            v-model="delModal"
+            @on-ok="confirmDel">
+            <p>确认删除？</p>
+        </Modal>
     </div>
 </template>
 
@@ -64,6 +70,7 @@
             return {
                 value1: '',
                 modal1: false,
+                delModal:false
 //                formValidate: {
 //                    name: '',
 //                    mail: '',
@@ -86,17 +93,32 @@
             toMemberChange() {
                 this.$router.push({path:'/memberChange',query:{curinfo:this.curinfo}})
             },
-            setDisable(){
+            setDisable(status){
                 this.$http.post(this.$api.DISABLE_USER, {
                     id:this.curinfo.id,
-                    Status:0
+                    status:status
                 }).then(res => {
-                    console.log('禁用会员', res);
-
+                    console.log('改变会员权限', res);
+                    this.$Message.success('修改成功');
+                    this.$router.push('member')
                 }, err => {
                     this.$Message.error('网络错误');
                 });
-            }
+            },
+            del(id) {
+                this.delModal = true;
+            },
+            confirmDel() {
+                console.log(this.delId);
+                this.$http.post(this.$api.DEL_USER + this.curinfo.id).then(res => {
+                    console.log('删除会员', res);
+                    this.$router.push('member')
+                }, err => {
+                    console.log('删除会员', err);
+                    this.delId = '';
+                    this.getMemberList()
+                });
+            },
         },
 
     }

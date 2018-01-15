@@ -121,7 +121,7 @@
                             password: this.formValidate.password,
                         })
                     }, err => {
-                        this.$Message.error('网络错误');
+                        this.$Message.error('请输入正确的用户名和密码');
                     })
                     .then(res => {
                         console.log('登陆', res);
@@ -130,11 +130,10 @@
                             this.$store.dispatch('setUserInfo', userinfo);
                             this.$router.push('mains');
                             sessionStorage.setItem('auto', this.auto);
+                            sessionStorage.setItem('com_id', userinfo.com_id);
                             //TODO 密码加密
-                            if (this.auto === true) {
-                                sessionStorage.setItem('mobile', this.formValidate.mobile);
-                                sessionStorage.setItem('password', this.formValidate.password)
-                            }
+                            sessionStorage.setItem('mobile', this.formValidate.mobile);
+                            sessionStorage.setItem('password', this.formValidate.password);
                             this.$Loading.finish();
                         } else {
                             this.$Message.error('请输入正确的用户名和密码');

@@ -39,6 +39,7 @@
                 this.$router.push('/login');
                 sessionStorage.removeItem('access_token');
                 sessionStorage.removeItem('refresh_token');
+                sessionStorage.removeItem('userInfo');
                 this.$store.dispatch('setUserInfo', null);
                 this.$store.dispatch('setComInfo', null);
                 this.$store.dispatch('setPage', 1);

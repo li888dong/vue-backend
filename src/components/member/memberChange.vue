@@ -6,7 +6,7 @@
         <div class="mainContent">
             <div class="mainNav">
                 <!-- @click="toAdd()" -->
-                <Button type="primary" size="small" @click="handleSubmit('formValidate');$router.go(-1)">保存</Button>
+                <Button type="primary" size="small" @click="handleSubmit('formValidate');$router.push('member')">保存</Button>
                 <Button type="ghost" size="small" @click="$router.go(-1)">取消</Button>
             </div>
             <div class="froms">
@@ -63,7 +63,7 @@
             </div>
             <div class="mainNav">
                 <!-- @click="toAdd()" -->
-                <Button type="primary" size="small" @click="handleSubmit;$router.go(-1)">保存</Button>
+                <Button type="primary" size="small" @click="handleSubmit('formValidate');$router.push('member')">保存</Button>
                 <Button type="ghost" size="small" @click="$router.go(-1)">取消</Button>
             </div>
         </div>
@@ -145,7 +145,7 @@
             handleSubmit(name) {
                 let reqData = {
                     id: this.id,
-                    fullname: this.formValidate.name,
+                    fullname: this.formValidate.fullname,
                     sex: this.formValidate.gender,
                     tel: this.formValidate.tel,
                     email: this.formValidate.email,

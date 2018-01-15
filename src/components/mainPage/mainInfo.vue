@@ -83,7 +83,7 @@
         },
         mounted() {
             this.getComInfo();
-            this.versionUrl = 'http://www.cx8o92.cn/download/windows/smartpower-win-1.0.6.exe'
+            this.versionUrl = 'http://www.cx8o92.cn/download/windows/易采智电-win-0.8.0.exe'
         }
     }
 </script>

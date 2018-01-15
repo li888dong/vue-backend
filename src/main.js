@@ -11,6 +11,11 @@ import * as api from './Api'
 Vue.api = Vue.prototype.$api = api
 const instance = axios.create({
     baseURL: "http://www.cx8o92.cn",
+    headers:{
+        common:{
+            Authorization:sessionStorage.getItem('access_token')
+        }
+    },
     timeout: 15000
 });
 Vue.http = Vue.prototype.$http = instance;
