@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="52px" viewBox="0 0 60 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>005交易结算</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="56" cy="26" r="4"></circle>
+        <circle id="path-2" cx="4" cy="26" r="4"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="index" transform="translate(-423.000000, -1551.000000)">
+            <g id="Group-9" transform="translate(0.000000, 729.000000)">
+                <g id="Group-10-Copy" transform="translate(413.000000, 478.000000)">
+                    <g id="Group-8" transform="translate(0.000000, 174.000000)">
+                        <g id="Group-4-Copy-18" transform="translate(0.000000, 150.000000)">
+                            <g id="Group-5" transform="translate(10.000000, 20.000000)">
+                                <g id="005交易结算">
+                                    <polyline id="Path-6" stroke="#4A90E2" stroke-linecap="round" stroke-linejoin="round" points="4 26 19 26 28 16.8076115 35 24"></polyline>
+                                    <polyline id="Path-6-Copy" stroke="#4A90E2" stroke-linecap="round" stroke-linejoin="round" points="25 28 32 35 41 26 57 26"></polyline>
+                                    <g id="Group-3" transform="translate(30.000000, 26.000000) scale(-1, 1) translate(-30.000000, -26.000000) ">
+                                        <path d="M53.7331898,35.4291771 L54.3265957,35.5356229 L53.9455049,34.8711715 C53.876799,35.0583297 53.8060172,35.2443393 53.7331898,35.4291771 Z M4.50689513,26.5989152 C4.50230675,26.3998324 4.5,26.2001856 4.5,26 L3.91171853,26.4921447 L4.50689496,26.5989081 Z M4.50689496,26.5989081 L53.7331898,35.4291771 C49.9414192,45.0527901 40.6044371,51.5 30,51.5 C16.1169244,51.5 4.8251037,40.4055193 4.50689513,26.5989152 Z M55.4931051,25.4010928 C55.1749007,11.594485 43.8830783,0.5 30,0.5 C19.3885634,0.5 10.0506586,6.94513117 6.26275599,16.5707695 L55.4931052,25.4011 Z" id="Oval" stroke="#4A90E2"></path>
+                                        <ellipse id="Oval-2-Copy-4" fill="#4A90E2" cx="6.01492537" cy="17" rx="2.01492537" ry="2"></ellipse>
+                                        <ellipse id="Oval-2-Copy-15" fill="#4A90E2" cx="54.0149254" cy="35" rx="2.01492537" ry="2"></ellipse>
+                                        <ellipse id="Oval-2-Copy-16" fill="#4A90E2" cx="35.0149254" cy="28" rx="2.01492537" ry="2"></ellipse>
+                                        <ellipse id="Oval-2-Copy-17" fill="#4A90E2" cx="25.0149254" cy="24" rx="2.01492537" ry="2"></ellipse>
+                                        <g id="Oval-2-Copy-13">
+                                            <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                            <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                            <circle stroke="#4A90E2" stroke-width="1" cx="56" cy="26" r="3.5"></circle>
+                                        </g>
+                                        <g id="Oval-2-Copy-14">
+                                            <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                            <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                            <circle stroke="#4A90E2" stroke-width="1" cx="4" cy="26" r="3.5"></circle>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="60px" viewBox="0 0 54 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="10" cy="30" r="4"></circle>
+        <circle id="path-2" cx="44" cy="30" r="4"></circle>
+        <circle id="path-3" cx="18" cy="22" r="4"></circle>
+        <circle id="path-4" cx="14" cy="4" r="4"></circle>
+        <circle id="path-5" cx="36" cy="22" r="4"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="index" transform="translate(-426.000000, -1397.000000)">
+            <g id="Group-9" transform="translate(0.000000, 729.000000)">
+                <g id="Group-10-Copy" transform="translate(413.000000, 478.000000)">
+                    <g id="Group-8" transform="translate(0.000000, 174.000000)">
+                        <g id="Group-4">
+                            <g id="Group" transform="translate(13.000000, 16.000000)">
+                                <path d="M50,30.5 L4,30.5 C2.06700338,30.5 0.5,32.0670034 0.5,34 L0.5,56 C0.5,57.9329966 2.06700338,59.5 4,59.5 L50,59.5 C51.9329966,59.5 53.5,57.9329966 53.5,56 L53.5,34 C53.5,32.0670034 51.9329966,30.5 50,30.5 Z" id="Rectangle" stroke="#4A90E2"></path>
+                                <g id="Oval-2">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="10" cy="30" r="3.5"></circle>
+                                </g>
+                                <g id="Oval-2-Copy-5">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="44" cy="30" r="3.5"></circle>
+                                </g>
+                                <path d="M28.0476052,4.5 L36.4773402,21.5 L51.9623645,21.5 C52.0751768,21.5 52.1876386,21.4878802 52.2977196,21.4638645 C53.1265825,21.2830361 53.645739,20.4821155 53.463389,19.6765242 L50.2944126,5.67652424 C50.1391793,4.99072976 49.5160494,4.5 48.7933882,4.5 L28.0476052,4.5 Z M17.206559,21.5 L13.3585162,4.5 L5.20617547,4.5 C4.4835142,4.5 3.86038431,4.99072976 3.70515098,5.67652424 L0.536174612,19.6765242 C0.512127698,19.7827594 0.5,19.8912226 0.5,20 C0.5,20.8263437 1.18618605,21.5 2.0371991,21.5 L17.206559,21.5 Z" id="Rectangle-2" stroke="#4A90E2"></path>
+                                <g id="Oval-2-Copy-7">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-3"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="18" cy="22" r="3.5"></circle>
+                                </g>
+                                <g id="Oval-2-Copy-8">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-4"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-4"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="14" cy="4" r="3.5"></circle>
+                                </g>
+                                <g id="Oval-2-Copy-6">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-5"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="36" cy="22" r="3.5"></circle>
+                                </g>
+                                <ellipse id="Oval-2-Copy-4" fill="#4A90E2" cx="27.0447761" cy="4" rx="2.01492537" ry="2"></ellipse>
+                                <path d="M6,13 L48,13" id="Path-3-Copy" stroke="#4A90E2" stroke-linecap="round"></path>
+                                <path d="M24,22 L30,22" id="Path-3" stroke="#4A90E2" stroke-linecap="round"></path>
+                                <path d="M28.1505536,29.2331653 L18.9190723,43.5 L27.5828056,43.5 L25.8494464,54.7668347 L35.0809277,40.5 L26.4171944,40.5 L28.1505536,29.2331653 Z" id="Path-4" stroke="#4A90E2"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

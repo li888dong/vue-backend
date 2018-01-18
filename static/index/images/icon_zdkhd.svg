@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>logo copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#000000" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="index" transform="translate(-517.000000, -869.000000)">
+            <g id="Group-9" transform="translate(0.000000, 729.000000)">
+                <g id="Group-10" transform="translate(413.000000, 0.000000)">
+                    <g id="Group-8" transform="translate(0.000000, 120.000000)">
+                        <g id="Group-4">
+                            <g id="Group-3" transform="translate(20.000000, 20.000000)">
+                                <g id="logo-copy" transform="translate(84.000000, 0.000000)">
+                                    <rect id="Rectangle" fill="#4FA8F9" x="0" y="0" width="64" height="64" rx="32"></rect>
+                                    <path d="M63.9188994,34.295972 C62.7962072,50.1318892 50.1506899,62.7841286 34.3176848,63.9173527 L13.625,43.064993 L21.8099993,18.6688492 L36.7889922,14.9220679 L50.5,20.9419737 L63.9188994,34.295972 L63.9188994,34.295972 Z" id="Combined-Shape" fill="url(#linearGradient-1)" opacity="0.200000003"></path>
+                                    <path d="M32.0625,9.875 L50.5,20.9375 L50.5,43.0625 L32.0625,54.125 L13.625,43.0625 L13.625,20.9375 L32.0625,9.875 Z M42.75625,35.503125 L31.878125,29.41875 L33.721875,35.31875 L23.765625,46.196875 L42.75625,35.503125 Z M21.36875,28.496875 L32.246875,34.765625 L30.5875,28.68125 L40.54375,17.803125 L21.36875,28.496875 Z" id="Combined-Shape-Copy" fill="#FFFFFF" fill-rule="nonzero"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

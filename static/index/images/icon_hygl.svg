@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 27</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="28" cy="4" r="4"></circle>
+        <circle id="path-2" cx="51.7128129" cy="47.8564065" r="4"></circle>
+        <circle id="path-3" cx="4.14359354" cy="48" r="4"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="index" transform="translate(-1025.000000, -1548.000000)">
+            <g id="Group-9" transform="translate(0.000000, 729.000000)">
+                <g id="Group-10-Copy" transform="translate(413.000000, 478.000000)">
+                    <g id="Group-8" transform="translate(0.000000, 174.000000)">
+                        <g id="Group-4-Copy-16" transform="translate(600.000000, 150.000000)">
+                            <g id="Group-27" transform="translate(12.000000, 17.000000)">
+                                <circle id="Oval-2-Copy-48" stroke="#4A90E2" cx="28" cy="20" r="15.5"></circle>
+                                <g id="Oval-2-Copy-36">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="28" cy="4" r="3.5"></circle>
+                                </g>
+                                <circle id="Oval-2-Copy-48" stroke="#4A90E2" transform="translate(37.856406, 39.856406) rotate(90.000000) translate(-37.856406, -39.856406) " cx="37.8564065" cy="39.8564065" r="15.5"></circle>
+                                <g id="Oval-2-Copy-36" transform="translate(51.712813, 47.856406) rotate(90.000000) translate(-51.712813, -47.856406) ">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="51.7128129" cy="47.8564065" r="3.5"></circle>
+                                </g>
+                                <circle id="Oval-2-Copy-48" stroke="#4A90E2" transform="translate(18.000000, 40.000000) rotate(270.000000) translate(-18.000000, -40.000000) " cx="18" cy="40" r="15.5"></circle>
+                                <g id="Oval-2-Copy-36" transform="translate(4.143594, 48.000000) rotate(270.000000) translate(-4.143594, -48.000000) ">
+                                    <use fill="#4A90E2" fill-rule="evenodd" xlink:href="#path-3"></use>
+                                    <use fill-opacity="0.400000006" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                                    <circle stroke="#4A90E2" stroke-width="1" cx="4.14359354" cy="48" r="3.5"></circle>
+                                </g>
+                                <circle id="Oval-2-Copy-34" fill="#4A90E2" transform="translate(28.000000, 28.000000) rotate(90.000000) translate(-28.000000, -28.000000) " cx="28" cy="28" r="2"></circle>
+                                <circle id="Oval-2-Copy-52" fill="#4A90E2" transform="translate(13.000000, 25.000000) rotate(90.000000) translate(-13.000000, -25.000000) " cx="13" cy="25" r="2"></circle>
+                                <circle id="Oval-2-Copy-53" fill="#4A90E2" transform="translate(43.000000, 25.000000) rotate(90.000000) translate(-43.000000, -25.000000) " cx="43" cy="25" r="2"></circle>
+                                <circle id="Oval-2-Copy-51" fill="#4A90E2" transform="translate(28.000000, 52.000000) rotate(90.000000) translate(-28.000000, -52.000000) " cx="28" cy="52" r="2"></circle>
+                                <circle id="Oval-2-Copy-49" fill="#4A90E2" transform="translate(23.000000, 35.000000) rotate(90.000000) translate(-23.000000, -35.000000) " cx="23" cy="35" r="2"></circle>
+                                <circle id="Oval-2-Copy-50" fill="#4A90E2" transform="translate(33.000000, 35.000000) rotate(90.000000) translate(-33.000000, -35.000000) " cx="33" cy="35" r="2"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

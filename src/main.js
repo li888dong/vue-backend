@@ -10,7 +10,7 @@ import * as api from './Api'
 
 Vue.api = Vue.prototype.$api = api
 const instance = axios.create({
-    baseURL: "http://www.cx8o92.cn",
+    baseURL: "http://39.106.106.150",
     headers:{
         common:{
             Authorization:sessionStorage.getItem('access_token')
